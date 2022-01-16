@@ -26,4 +26,3 @@
 3. To Keep data as it is, wrap the **component** tag with **keep-alive**.
 4. We can use, vue in-built overlay by using **dialog**  tag with **open** attribute.
 5. We can render the components like overlay, in the HTML DOM tree by using **teleport** tag and providing **to** attribute and pass the CSS selector to let teleport know where to render the component.
-6. 
