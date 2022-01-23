@@ -21,15 +21,30 @@ export default {
     UserItem
   },
   inject: ['teams', 'users'],
+  props: ['teamId'], // teamId is dynamically passed by vue-router as we set 'props' true
   data() {
     return {
       teamName: '',
       members: [],
     };
   },
+  beforeRouteUpdate(to, from, next) {
+    console.log('TeamMembers beforeRouteUpdate', to, from);
+    next();
+  },
   methods: {
-    loadTeamMembers(route) {
-      const teamId = route.params.teamId;
+    /* when using routes */
+    // loadTeamMembers(route) {
+    //   const teamId = route.params.teamId;
+    //   const team = this.teams.find(item => item.id === teamId);
+    //   if (team) {
+    //     this.teamName = team.name;
+    //     this.members = this.users.filter(
+    //       user => team.members.findIndex(userId => userId === user.id) > -1);
+    //   }
+    // },
+    /* when using props */
+    loadTeamMembers(teamId) {
       const team = this.teams.find(item => item.id === teamId);
       if (team) {
         this.teamName = team.name;
@@ -39,11 +54,15 @@ export default {
     }
   },
   created() {
-    this.loadTeamMembers(this.$route);
+    // this.loadTeamMembers(this.$route);
+    this.loadTeamMembers(this.teamId);
   },
   watch: {
-    $route(newRoute) {
-      this.loadTeamMembers(newRoute);
+    // $route(newRoute) {
+    //   this.loadTeamMembers(newRoute);
+    // },
+    teamId(newId) {
+      this.loadTeamMembers(newId);
     }
   }
 };
