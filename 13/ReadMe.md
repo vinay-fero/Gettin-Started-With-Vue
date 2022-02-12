@@ -19,3 +19,5 @@
 16. beforeRouterEnter - component level.
 17. beforeRouteUpdate - runs before reusing a component.
 18. Precedence - Global > Router > Component.
+19. beforeRouteLeave - runs before leaving the component, and can prevent the action.
+20. we can pass extra data form routes, using meta attribute and can access anywhere where the route is available.
