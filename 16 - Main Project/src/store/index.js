@@ -7,5 +7,15 @@ export default createStore({
   modules: {
     coaches: coachStore,
     request: requestStore
+  },
+  state() {
+    return {
+      userId: 'c3'
+    }
+  },
+  getters: {
+    userId(state) {
+      return state.userId;
+    }
   }
 });

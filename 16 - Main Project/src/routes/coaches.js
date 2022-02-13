@@ -9,6 +9,7 @@ export default [
   {
     path: '/coaches/:id',
     component: CoachDetail,
+    props: true,
     children: [
       {path: 'contact', component: ContactCoach}
     ]
