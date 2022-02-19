@@ -89,8 +89,8 @@ export default {
         this.formIsValid = false;
       }
 
-      if (this.area.val.length < 1) {
-        this.area.isValid = false;
+      if (this.areas.val.length < 1) {
+        this.areas.isValid = false;
         this.formIsValid = false;
       }
     },
@@ -102,11 +102,11 @@ export default {
       }
 
       const formData = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        description: this.description,
-        hourlyRate: this.rate,
-        areas: this.areas
+        firstName: this.firstName.val,
+        lastName: this.lastName.val,
+        description: this.description.val,
+        hourlyRate: this.rate.val,
+        areas: this.areas.val
       };
 
       this.$emit('save-data', formData);
