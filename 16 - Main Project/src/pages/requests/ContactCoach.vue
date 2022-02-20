@@ -26,10 +26,12 @@ export default {
       email: '',
       message: '',
       formIsValid: true,
+      isLoading: false,
+      error: null
     }
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.formIsValid = true;
 
       if (this.email === '' || !this.email.includes('@') || this.message === '') {
@@ -37,16 +39,23 @@ export default {
         return;
       }
 
-      this.$store.dispatch(
-        'request/addRequest',
-        {
-          coachId: this.$route.params.id,
-          email: this.email,
-          message: this.message
-        }
-      );
+      try {
+        this.isLoading = true;
 
-      this.$router.replace('/coaches');
+        await this.$store.dispatch(
+          'request/addRequest',
+          {
+            coachId: this.$route.params.id,
+            email: this.email,
+            message: this.message
+          }
+        );
+
+        await this.$router.replace('/coaches');
+      } catch (e) {
+        this.error = e;
+      }
+      this.isLoading = false;
     }
   }
 };
